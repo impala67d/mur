@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Извинительный комитет · Дело №2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #fef9f0 0%, #fff3e0 100%);
+            font-family: 'Segoe UI', 'Roboto', system-ui, -apple-system, sans-serif;
+            color: #2c1a0e;
+            padding: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 245, 0.92);
+            backdrop-filter: blur(2px);
+            border-radius: 2rem;
+            padding: 1.8rem;
+            margin-bottom: 1.8rem;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(255, 215, 170, 0.5);
+        }
+
+        .hero {
+            text-align: center;
+            background: #fff6e8;
+            border-bottom: 4px solid #ffb347;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #b45f2b, #e07c3c);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .sub {
+            font-size: 1rem;
+            color: #7a5a44;
+            border-top: 1px dashed #ffcf9a;
+            padding-top: 0.8rem;
+            margin-top: 0.8rem;
+        }
+
+        .timer-box {
+            background: #2e241d;
+            color: #ffe6c7;
+            border-radius: 2rem;
+            padding: 1.2rem;
+            text-align: center;
+        }
+
+        .timer-digits {
+            font-family: monospace;
+            font-size: 2.3rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            background: #1f1914;
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border-radius: 2rem;
+            margin: 0.5rem 0;
+            color: #ffbc7a;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ff9f4a;
+            color: #2c1a0e;
+            font-weight: bold;
+            padding: 0.9rem 1.6rem;
+            border-radius: 3rem;
+            text-decoration: none;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            transition: 0.2s;
+        }
+
+        .btn:hover {
+            background: #ff8c2c;
+            transform: scale(0.97);
+        }
+
+        .telegram-btn {
+            background: #33aadb;
+        }
+        .telegram-btn:hover {
+            background: #2b8eb5;
+        }
+
+        .commit-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .commit-list li {
+            background: #fef3e4;
+            margin-bottom: 0.7rem;
+            padding: 0.8rem 1rem;
+            border-radius: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            border-left: 6px solid #ffb347;
+        }
+
+        .emoji-status {
+            font-size: 1.5rem;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 0.9rem;
+            margin-top: 0.4rem;
+            margin-bottom: 1rem;
+            border-radius: 1.5rem;
+            border: 1px solid #ffd5aa;
+            background: white;
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+
+        label {
+            font-weight: 600;
+            color: #5a3e28;
+        }
+
+        .form-status {
+            margin-top: 0.6rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.7rem;
+            color: #b39274;
+            margin-top: 2rem;
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            background: radial-gradient(circle, #ffcf9a, transparent);
+            margin: 0.5rem 0;
+        }
+
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    
+    <div class="card hero">
+        <h1>🧾 ИЗВИНИТЕЛЬНЫЙ КОМИТЕТ</h1>
+        <div style="font-size: 2rem;">👩‍⚖️💔🛠️</div>
+        <p style="font-size: 1.2rem; font-weight: 600; margin: 0.5rem 0;">Дело №2026-04 · «реабилитация одного дурака»</p>
+        <p>обвиняемый <strong>добровольно</strong> берёт на себя публичные обязательства.<br>
+        📍 принимаются жалобы, пожелания и приговоры.</p>
+        <div class="sub">
+            ❝ прости меня. Я не хочу тебя терять. ❞
+        </div>
+    </div>
+
+    <div class="card timer-box">
+        <div style="font-size: 1.2rem;">⏳ до моего полного исправления / встречи осталось:</div>
+        <div class="timer-digits" id="countdownDisplay">загрузка...</div>
+        <div style="font-size: 0.8rem; margin-top: 6px;">*каждый день я буду обновлять коммиты ниже</div>
+    </div>
+
+    <div class="card">
+        <h2 style="display: flex; gap: 8px; align-items: center;">📋 ПУБЛИЧНЫЙ ЛОГ ИСПРАВЛЕНИЙ</h2>
+        <p style="margin-bottom: 0.8rem;">⚡ то, что я уже сделал / делаю прямо сейчас:</p>
+        <ul class="commit-list" id="commitList"></ul>
+        <p style="font-size: 0.75rem; margin-top: 12px;">✅ Каждый пункт — доказательство: скриншоты, билеты, фото — по запросу.</p>
+    </div>
+
+    <div class="card">
+        <h2>📬 «СМЯГЧИТЬ НАКАЗАНИЕ»</h2>
+        <p>напиши, что я должен сделать, чтобы заслужить прощение. обещаю выполнить.</p>
+        <form id="wishForm">
+            <label>твоё имя</label>
+            <input type="text" id="name" placeholder="мяу" required>
+
+            <label>🌟 моё условие помилования</label>
+            <textarea id="wish" rows="3" placeholder="мур" required></textarea>
+
+            <label>💢 степень срочности выполнения</label>
+            <select id="anger">
+                <option value="легко">🙂 важно, но можно отложить - месяц</option>
+                <option value="серьезно">😐 важно, желательно поскорее - неделя</option>
+                <option value="атомный">💥 важно, нужно сейчас же - в это же время</option>
+            </select>
+
+            <button type="submit" class="btn" style="width: 100%;" id="submitBtn">🔥 отправить приговор 🔥</button>
+            <div id="formFeedback" class="form-status"></div>
+        </form>
+        <hr>
+        <p style="font-size: 0.75rem;">✉️ каждое желание придёт мне на почту. я отвечу сразу.</p>
+    </div>
+
+    <!-- БЛОК С TELEGRAM (ВМЕСТО ЧАТА) -->
+    <div class="card" style="text-align: center;">
+        <h2>💬 НАПИШИ МНЕ ПРЯМО СЕЙЧАС</h2>
+        <p>Нажми на кнопку — откроется Telegram. Я сразу увижу и отвечу.</p>
+        <a href="https://t.me/ВАШ_ЛОГИН" target="_blank" class="btn telegram-btn" style="display: inline-flex; align-items: center; gap: 10px;">
+            📱 НАПИСАТЬ В TELEGRAM
+        </a>
+        <p style="font-size: 0.7rem; margin-top: 12px;">✨ Я всегда на связи, даже на расстоянии</p>
+    </div>
+    <!-- КОНЕЦ БЛОКА TELEGRAM -->
+
+    <div class="footer">
+        ⚖️ извинительный комитет · обещаю не удалять сайт, пока не исправлюсь. <br>
+        дата основания: апрель 2026
+    </div>
+</div>
+
+<script>
+    // ========== НАСТРОЙКИ ==========
+    const FORMSPREE_ID = 'mojyjnod';
+    const targetDate = new Date(2026, 3, 24, 23, 59, 0);
+    const commits = [
+        { emoji: "⌛", text: "пойду завтра в больницу" },
+    ];
+    // =================================
+
+    function updateTimer() {
+        const now = new Date();
+        const diff = targetDate - now;
+        if (diff <= 0) {
+            document.getElementById('countdownDisplay').innerHTML = "❤️ ВРЕМЯ ПРИШЛО! ❤️";
+            return;
+        }
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (86400000)) / 3600000);
+        const mins = Math.floor((diff % 3600000) / 60000);
+        const secs = Math.floor((diff % 60000) / 1000);
+        document.getElementById('countdownDisplay').innerHTML = `${days}д ${hours}ч ${mins}м ${secs}с`;
+    }
+    updateTimer();
+    setInterval(updateTimer, 1000);
+
+    const commitListEl = document.getElementById('commitList');
+    commits.forEach(c => {
+        const li = document.createElement('li');
+        li.innerHTML = `<span class="emoji-status">${c.emoji}</span><span>${c.text}</span>`;
+        commitListEl.appendChild(li);
+    });
+
+    const form = document.getElementById('wishForm');
+    const feedbackDiv = document.getElementById('formFeedback');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value.trim();
+        const wish = document.getElementById('wish').value.trim();
+        const angerSelect = document.getElementById('anger');
+        const angerText = angerSelect.options[angerSelect.selectedIndex]?.text || 'средне';
+        
+        if (!name || !wish) {
+            feedbackDiv.innerHTML = '❓ Напиши имя и желание, пожалуйста 💌';
+            feedbackDiv.style.color = '#b33';
+            return;
+        }
+        
+        submitBtn.classList.add('loading');
+        submitBtn.textContent = '⏳ Отправляю...';
+        feedbackDiv.innerHTML = '';
+        
+        try {
+            const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    wish: wish,
+                    anger: angerText,
+                    _subject: `🌸 Желание от ${name} | Извинительный комитет`
+                })
+            });
+            
+            if (response.ok) {
+                feedbackDiv.innerHTML = '✅ Желание улетело мне на почту! ❤️ Спасибо, что даёшь шанс. Я скоро отвечу.';
+                feedbackDiv.style.color = '#2a7a3b';
+                form.reset();
+            } else {
+                throw new Error('Ошибка отправки');
+            }
+        } catch (error) {
+            feedbackDiv.innerHTML = '❌ Ошибка связи. Но желание сохранилось у тебя в телефоне — напиши мне его в чат или в мессенджер, пожалуйста.';
+            feedbackDiv.style.color = '#b45f2b';
+            const backupMessage = `🌸 ОТ ${name} 🌸\nСтепень вины: ${angerText}\n❗ Желание: ${wish}`;
+            await navigator.clipboard.writeText(backupMessage);
+            feedbackDiv.innerHTML += '<br>📋 Желание скопировано в буфер, вставь мне в Telegram.';
+        } finally {
+            submitBtn.classList.remove('loading');
+            submitBtn.textContent = '🔥 Отправить приговор 🔥';
+        }
+    });
+</script>
+</body>
+</html>
